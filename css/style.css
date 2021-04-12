@@ -59,3 +59,10 @@ main .container-num ul li.risposta.active{
 main .container-num ul li.risposta input{
     margin-bottom: 10px;
 }
+
+.reset{
+    display: none;
+    cursor: pointer;
+    margin-top: 20px;
+}
+

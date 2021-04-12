@@ -24,6 +24,8 @@ $(document).ready( function() {
 
     var numeriGiocatore = [];
 
+    var resetBtn =$('input.reset') ;
+
 
     
 
@@ -37,9 +39,6 @@ $(document).ready( function() {
 
         }
     };
-
-    console.log(numeriRandom);
-
 
     giocatore.click( function(){
 
@@ -101,12 +100,18 @@ $(document).ready( function() {
                     timeNum--;
                     textTime.text('Tempo restante: ' + timeNum);
                 }else {
-                    textTime.text('Tempo scaduto');
-                    clearInterval(timeId);
+                    textTime.text('Tempo scaduto  hai perso :(');
+                        clearInterval(timeId);  
+                        resetBtn.show();  
+                        $('ul li.risposta').removeClass('active');                  
                 }
                 
 
             },1000 ) ;
+
+            resetBtn.click( function(){
+                setTimeout(function(){ window.location.reload() }, 3);
+            } );
 
             
         }
