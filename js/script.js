@@ -128,8 +128,8 @@ $(document).ready( function() {
 
         for(var i = 0 ; i < numeriGiusti.length; i++ ){
 
-           if(numeriGiusti.includes(undefined)){
-               nTrue.append(' ');
+           if(numeriGiusti.includes(NaN)){
+               nTrue.text(' ');
            }
            else{
                nTrue.append(numeriGiusti[i] + ' ');
@@ -140,7 +140,7 @@ $(document).ready( function() {
         for(var i = 0 ; i < numeriSbagliati.length; i++ ){
 
            if(numeriSbagliati.includes(NaN)){
-               nFalse.append(' ');
+               nFalse.text(' ');
            }else{
                nFalse.append(numeriSbagliati[i] + ' ');
            }
