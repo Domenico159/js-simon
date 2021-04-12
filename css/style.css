@@ -66,3 +66,26 @@ main .container-num ul li.risposta input{
     margin-top: 20px;
 }
 
+main .container-num ul li.risultato{
+    display: none;
+}
+
+main .container-num ul li.risultato.active{
+    display: flex;
+}
+
+main .container-num ul li.risultato .numeri-giusti{
+    margin-right: 30px;
+}
+
+.numeri-giusti{
+    text-align: center;
+    color: green;
+}
+
+
+.numeri-sbagliati{
+    text-align: center;
+    color: red;
+}
+

@@ -5,7 +5,16 @@ $(document).ready( function() {
 
     var textBtn = $( 'main button h1' );
 
-    var textTime = $( 'main h2' );
+    var textTime = $( 'main h2.text-time' );
+
+    var textEnd = $( 'main h2.text-end' );
+
+    var nTrue =$('.numeri-giusti .n-true') ;
+
+    var nFalse =$('.numeri-sbagliati .n-false') ;
+
+    var risultato =$('.risultato') ;
+
 
     var numeriRandom = [];
 
@@ -23,6 +32,10 @@ $(document).ready( function() {
     var userNum5 =$('#num5-user');
 
     var numeriGiocatore = [];
+
+    var numeriGiusti = [];
+
+    var numeriSbagliati=[];
 
     var resetBtn =$('input.reset') ;
 
@@ -50,14 +63,52 @@ $(document).ready( function() {
 
              numeriGiocatore.push(numero1,numero2,numero3,numero4,numero5);
 
+
+             for(var i = 0 ; i < 5; i++ ){
+
+                if(numeriRandom.includes(numeriGiocatore[i])){
+                    numeriGiusti.push(numeriGiocatore[i])
+                }else {
+                    numeriSbagliati.push(numeriGiocatore[i])
+                }
+             }
+
+               
+
+
+             for(var i = 0 ; i < numeriGiusti.length; i++ ){
+ 
+                if(numeriGiusti.includes(undefined)){
+                    nTrue.append('nessuno');
+                }else{
+                    nTrue.append(numeriGiusti[i] + ' ');
+                }
+             }
+
+
+             for(var i = 0 ; i < numeriSbagliati.length; i++ ){
+ 
+                if(numeriSbagliati.includes(undefined)){
+                    nFalse.append('nessuno');
+                }else{
+                    nFalse.append(numeriSbagliati[i] + ' ');
+                }
+             }
+
+
+             console.log(numeriRandom);
+             console.log(numeriGiocatore);
+             console.log(numeriGiusti);
+             console.log(numeriSbagliati);
+
              
              if(numeriRandom.sort().join(',') === numeriGiocatore.sort().join(',')){
                 alert('Hai Vinto  :D !!!');
-                setTimeout(function(){ window.location.reload() }, 3);
+                // setTimeout(function(){ window.location.reload() }, 5000);
             }
                else{
                 alert('Hai perso :(');
-                setTimeout(function(){ window.location.reload() }, 3);
+                // setTimeout(function(){ window.location.reload() }, 5000);
                };
 
         
@@ -91,19 +142,19 @@ $(document).ready( function() {
                 $('ul li.risposta').addClass('active');
             }, 500 );
             
-            
-
 
             var timeId = setInterval( function(){
 
                 if(timeNum > 0){
                     timeNum--;
+                    textEnd.text('Inserisci i numeri che ricordi ad uno a uno');
                     textTime.text('Tempo restante: ' + timeNum);
                 }else {
                     textTime.text('Tempo scaduto  hai perso :(');
                         clearInterval(timeId);  
                         resetBtn.show();  
-                        $('ul li.risposta').removeClass('active');                  
+                        $('ul li.risposta').removeClass('active');   
+                        risultato.addClass('active')               
                 }
                 
 
