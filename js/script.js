@@ -100,6 +100,12 @@ $(document).ready( function() {
 
             },1000 ) ;
 
+
+
+
+
+            
+
             
     giocatore.click( function(){
 
@@ -116,14 +122,11 @@ $(document).ready( function() {
 
            if(numeriRandom.includes(numeriGiocatore[i])){
                numeriGiusti.push(numeriGiocatore[i])
-           }else {
-               numeriSbagliati.push(numeriGiocatore[i])
+           }else if (!isNaN(numeriGiocatore[i])) {
+               numeriSbagliati.push(numeriGiocatore[i]);
            }
         }
 
-
-
-          
 
 
         for(var i = 0 ; i < numeriGiusti.length; i++ ){
@@ -141,6 +144,7 @@ $(document).ready( function() {
 
            if(numeriSbagliati.includes(NaN)){
                nFalse.text(' ');
+               console.log(numeriSbagliati);
            }else{
                nFalse.append(numeriSbagliati[i] + ' ');
            }
