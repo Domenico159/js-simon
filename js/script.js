@@ -53,67 +53,6 @@ $(document).ready( function() {
         }
     };
 
-    giocatore.click( function(){
-
-             var numero1 = parseInt(userNum1.val()) ; 
-             var numero2 = parseInt(userNum2.val()) ; 
-             var numero3 = parseInt(userNum3.val()) ; 
-             var numero4 = parseInt(userNum4.val()) ; 
-             var numero5 = parseInt(userNum5.val()) ; 
-
-             numeriGiocatore.push(numero1,numero2,numero3,numero4,numero5);
-
-
-             for(var i = 0 ; i < 5; i++ ){
-
-                if(numeriRandom.includes(numeriGiocatore[i])){
-                    numeriGiusti.push(numeriGiocatore[i])
-                }else {
-                    numeriSbagliati.push(numeriGiocatore[i])
-                }
-             }
-
-               
-
-
-             for(var i = 0 ; i < numeriGiusti.length; i++ ){
- 
-                if(numeriGiusti.includes(undefined)){
-                    nTrue.append('nessuno');
-                }else{
-                    nTrue.append(numeriGiusti[i] + ' ');
-                }
-             }
-
-
-             for(var i = 0 ; i < numeriSbagliati.length; i++ ){
- 
-                if(numeriSbagliati.includes(undefined)){
-                    nFalse.append('nessuno');
-                }else{
-                    nFalse.append(numeriSbagliati[i] + ' ');
-                }
-             }
-
-
-             console.log(numeriRandom);
-             console.log(numeriGiocatore);
-             console.log(numeriGiusti);
-             console.log(numeriSbagliati);
-
-             
-             if(numeriRandom.sort().join(',') === numeriGiocatore.sort().join(',')){
-                alert('Hai Vinto  :D !!!');
-                // setTimeout(function(){ window.location.reload() }, 5000);
-            }
-               else{
-                alert('Hai perso :(');
-                // setTimeout(function(){ window.location.reload() }, 5000);
-               };
-
-        
-
-    } );
 
     btnStart.click( function(){
 
@@ -147,18 +86,96 @@ $(document).ready( function() {
 
                 if(timeNum > 0){
                     timeNum--;
-                    textEnd.text('Inserisci i numeri che ricordi ad uno a uno');
+                    textEnd.text('Inserisci i numeri che ricordi  uno ad uno');
                     textTime.text('Tempo restante: ' + timeNum);
                 }else {
                     textTime.text('Tempo scaduto  hai perso :(');
                         clearInterval(timeId);  
                         resetBtn.show();  
                         $('ul li.risposta').removeClass('active');   
-                        risultato.addClass('active')               
+                        risultato.addClass('active')   
+                        textEnd.hide();            
                 }
                 
 
             },1000 ) ;
+
+            
+    giocatore.click( function(){
+
+        var numero1 = parseInt(userNum1.val()) ; 
+        var numero2 = parseInt(userNum2.val()) ; 
+        var numero3 = parseInt(userNum3.val()) ; 
+        var numero4 = parseInt(userNum4.val()) ; 
+        var numero5 = parseInt(userNum5.val()) ; 
+
+        numeriGiocatore.push(numero1,numero2,numero3,numero4,numero5);
+
+
+        for(var i = 0 ; i < 5; i++ ){
+
+           if(numeriRandom.includes(numeriGiocatore[i])){
+               numeriGiusti.push(numeriGiocatore[i])
+           }else {
+               numeriSbagliati.push(numeriGiocatore[i])
+           }
+        }
+
+
+
+          
+
+
+        for(var i = 0 ; i < numeriGiusti.length; i++ ){
+
+           if(numeriGiusti.includes(undefined)){
+               nTrue.append(' ');
+           }
+           else{
+               nTrue.append(numeriGiusti[i] + ' ');
+           }
+        }
+
+
+        for(var i = 0 ; i < numeriSbagliati.length; i++ ){
+
+           if(numeriSbagliati.includes(NaN)){
+               nFalse.append(' ');
+           }else{
+               nFalse.append(numeriSbagliati[i] + ' ');
+           }
+        }
+
+        // console.log(numeriRandom);
+        // console.log(numeriGiocatore);
+        // console.log(numeriGiusti);
+        // console.log(numeriSbagliati);
+
+        
+        if(numeriRandom.sort().join(',') === numeriGiocatore.sort().join(',')){
+                   resetBtn.show();  
+                   $('ul li.risposta').removeClass('active');   
+                   risultato.addClass('active')
+                   clearInterval(timeId);
+                   textEnd.hide();
+                   textTime.text('Hai Vinto  :D !!!') 
+                   confetti( {
+                       particleCount:1000,
+                       spread:360,
+                   } );
+       }
+          else{
+                   resetBtn.show();  
+                   $('ul li.risposta').removeClass('active');   
+                   risultato.addClass('active')
+                   clearInterval(timeId);
+                   textEnd.hide();
+                   textTime.text('Hai perso :(') 
+          };
+
+   
+
+} );
 
             resetBtn.click( function(){
                 setTimeout(function(){ window.location.reload() }, 3);

@@ -18,6 +18,7 @@ main{
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background: linear-gradient(45deg ,rgb(233, 233, 159),rgb(219, 117, 117));
 }
 
 main .text{
